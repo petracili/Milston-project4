@@ -1,0 +1,71 @@
+<div class="collapse navbar-collapse navbar-dark bg-dark" id="main-nav">
+    <ul class="navbar-nav w-auto mx-auto">
+
+        <li class="nav-item dropdown mega-menu border-0">
+            <a class="nav-link mx-3" href="{% url 'products' %}"  id="pre-mix-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                ALL WINES
+            </a>
+            <div class="dropdown-menu dropdown-content shadow p-3 mb-5 bg-white rounded-0 border-0"    
+                aria-labelledby="all-products-link">
+                <a href="{% url 'products' %}?sort=price&direction=asc" class="dropdown-item">By Price</a>
+                <a href="{% url 'products' %}?sort=rating&direction=asc" class="dropdown-item ">By Rating</a>
+                <div class="dropdown-divider"></div>
+                <a href="{% url 'products' %}" class="dropdown-item ">All Wines</a>
+            </div>
+        </li> 
+
+        <li class="nav-item dropdown mega-menu">
+            <a class="nav-link mx-3" href="#" id="wine-type-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                SHOP BY WINE TYPE
+            </a>
+            <div class="dropdown-menu dropdown-content shadow p-3 mb-5 bg-white rounded-0 border-0"
+                aria-labelledby="wine_type-link">
+                <div class="row px-3">
+                    <h5><strong>Wine Type</strong></h5>
+                </div>
+                <div class="row">
+                    <a href="{% url 'products' %}?wine_type=red" class="dropdown-item">Red</a>
+                    <a href="{% url 'products' %}?wine_type=white" class="dropdown-item ">White</a>
+                    <a href="{% url 'products' %}?wine_type=sparkling" class="dropdown-item ">Sparkling</a>
+                    <a href="{% url 'products' %}?wine_type=rose" class="dropdown-item ">Rosé</a>
+                </div>
+            </div>
+        </li> 
+
+        <li class="nav-item dropdown mega-menu">
+            <a class="nav-link text-black mx-3" href="#" id="region-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                SHOP BY REGION
+            </a>
+            <div class="dropdown-menu dropdown-content shadow p-3 mb-5 bg-white rounded-0 border-0" 
+                aria-labelledby="region-link">
+                <div class="row px-3">
+                    <h5><strong>Region</strong></h5>
+                </div>
+                <div class="row">
+                    <a href="{% url 'products' %}?region=slovenija" class="dropdown-item">Slovenija</a>
+                    <a href="{% url 'products' %}?region=continental" class="dropdown-item">Continental</a>
+                    <a href="{% url 'products' %}?region=istria" class="dropdown-item">Istria</a>
+                    <a href="{% url 'products' %}?region=dalmatia" class="dropdown-item">Dalmatia</a>
+                </div>
+            </div>
+        </li>
+
+        <li class="nav-item dropdown mega-menu">
+            <a class="drop-btn nav-link text-black mx-3" href="#" id="winery-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                SHOP BY VINEYARD
+            </a>
+            <div class="dropdown-menu dropdown-content shadow p-3 bg-white rounded-0 border-0" 
+                aria-labelledby="winery-link">
+                <div class="row px-3">
+                    <h5><strong>Vineyards</strong></h5>
+                </div>
+                <div class="row mega-menu">
+                    <a href="{% url 'products' %}?winery=belaj-castle" class="dropdown-item">BELAJ CASTLE, ISTRIA</a>
+                    <a href="{% url 'products' %}?winery=krajnacic-winery" class="dropdown-item">KRAJANČIĆ WINERY, KORČULA</a>
+                    <a href="{% url 'products' %}?winery=saints-hills-winery" class="dropdown-item">SAINTS HILLS WINERY, PELJEŠAC</a>
+                    
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
