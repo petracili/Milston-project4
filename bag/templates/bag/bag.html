@@ -72,14 +72,15 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </form>
+                                       
                                         <!-- end of increment and decrement button form -->
                                         <!-- Update quantity after increment or decrement -->
                                         <p class="text-center">
-                                            <a class="pr-3 update-link text-dark">Update</a>
-                                            <a class="update-link text-danger">Delete</a>
+                                            <button type="submit" class="pr-3 update-link text-dark">Update</button>
+                                            <a href="{% url 'delete_item' item.item_id %}" class="update-link text-danger">Delete</a>
+                                        </form>
                                         </p>
-                                        
+                                    </form>
                                     </td>
                                     
                                     <td class="py-3">

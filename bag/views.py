@@ -42,7 +42,7 @@ def delete_item(request, item_id):
 
     bag = request.session.get('bag', {})
 
-    bag.pop[item_id]
+    bag.pop(item_id)
 
     request.session['bag'] = bag
-    return HttpResponse(status=200)
+    return redirect(reverse('view_bag'))
