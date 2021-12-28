@@ -1,0 +1,1 @@
+web: gunicorn croatian_wine.wsgi
