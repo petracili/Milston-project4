@@ -9,7 +9,7 @@ from products.models import Wine
 from profiles.forms import UserProfileForm
 from profiles.models import UserProfile
 from bag.contexts import bag_contents
-
+import os
 import stripe
 import json
 
@@ -25,6 +25,7 @@ def cache_checkout_data(request):
         })
         return HttpResponse(status=200)
     except Exception as e:
+        print(f"Problem {str(e)}")
         messages.error(request, 'Sorry, your payment cannot be \
             processed right now. Please try again later.')
         return HttpResponse(content=e, status=400)
@@ -47,17 +48,18 @@ def checkout(request):
             'street_address2': request.POST['street_address2'],
             'town_or_city': request.POST['town_or_city'],
             'postcode': request.POST['postcode'],
-            'county': request.POST['county'],
-            'country': request.POST['country'],
+            'country': request.POST['country']
+            # 'county': request.POST['county'],
         }
         order_form = OrderForm(form_data)
-
+        print('***** Form is NOT valid *****')
         if order_form.is_valid():
             order = order_form.save(commit=False)
             payment_intent_id = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_payment_intent_id = payment_intent_id
             order.original_bag = json.dumps(bag)
             order.save()
+            print('***** Form is valid *****')
             for item_id, item_data in bag.items():
                 try:
                     product = Wine.objects.get(id=item_id)
@@ -87,15 +89,6 @@ def checkout(request):
             messages.error(request, "Your shopping bag is empty")
             return redirect(reverse('products'))
 
-        current_bag = bag_contents(request)
-        total = current_bag['grand_total']
-        stripe_total = round(total * 100)
-        stripe.api_key = stripe_secret_key
-        intent = stripe.PaymentIntent.create(
-            amount=stripe_total,
-            currency=settings.STRIPE_CURRENCY
-        )
-
         # Prefill form using default delivery info
         if request.user.is_authenticated:
             try:
@@ -119,13 +112,21 @@ def checkout(request):
             messages.warning(request, 'Stripe public key is missing.')
 
         order_form = OrderForm()
-        template = 'checkout/checkout.html'
-        context = {
-            'order_form': order_form,
-            'stripe_public_key': 'pk_test_51KBJWnBOqhwJ3oMOmtekRdqqyKq1x05m5MnPYgX1pDCXei0LfcA9Ppfwr5UJCMeyqiI2lITrAvbAPXU7OaQKm5QB00YstcbkfX',
-            'client_secret': 'test client secret',
-        }
-        return render(request, template, context)
+    current_bag = bag_contents(request)
+    total = current_bag['grand_total']
+    stripe_total = round(total * 100)
+    stripe.api_key = stripe_secret_key
+    intent = stripe.PaymentIntent.create(
+        amount=stripe_total,
+        currency=settings.STRIPE_CURRENCY
+    )
+    template = 'checkout/checkout.html'
+    context = {
+        'order_form': order_form,
+        'stripe_public_key': stripe_public_key,
+        'client_secret': intent.client_secret,
+    }
+    return render(request, template, context)
 
 
 def checkout_success(request, order_number):
@@ -148,7 +149,7 @@ def checkout_success(request, order_number):
                 'default_street_address2': order.street_address2,
                 'default_town_or_city': order.town_or_city,
                 'default_county': order.county,
-                'default_postal_code': order.postal_code,
+                'default_postal_code': order.postcode,
                 'default_country': order.country,
             }
             user_profile_form = UserProfileForm(profile_data, instance=profile)
