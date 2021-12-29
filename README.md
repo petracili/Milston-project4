@@ -391,7 +391,6 @@ Below are the steps that I have taken with regards to defensive design:
 + [Responsinator](https://www.responsinator.com/) used to check site was responsive on different screen sizes.
 + [Am I Responsive](http://ami.responsivedesign.is/) used to generate README intro image.
 + [favicon.io](https://favicon.io/) used to create a site favicon.
-+ [ClipConverter](https://www.clipconverter.cc/2/) used to download and convert YouTube videos.
 + [Autoprefixer](https://autoprefixer.github.io/) used to make CSS cross-browser compatible..
 
 
