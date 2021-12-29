@@ -180,6 +180,154 @@ With a user profile:
 
 ---
 
+### **Products Page**
+
+All users can browse through the available products.
+Products can be sorted by:
+
++ Price
++ Name
++ Description 
+
+If a user wants to know more about a product, they can click it and open the product detail page.
+
+---
+
+### **Product Details Page**
+
+From the product detail page, the user can view:
+
++ Product name
++ Tasting notes
++ Wine type
++ Region
++ Winery
++ Rating
++ Abv
+
+The user can can then either go back to the products page, add a single item to ther bag or adjust the quantity to add to the bag
+
+### **Admin CRUD functionality**
+
+As well as all of the abpve features(read), the admin can add, edit and delete products wines from the site - they don't have to visit the admin panel for this. 
++ Add(*Create*): 
+From the 'My Account' dropdown, the admin can choose 'Product Management'. This allows them to create the item by filling in the form.
+
++ Edit(*Update*): 
+From the item detail page, the admin has an edit button that will direct them to the edit page. All of the form fields wil be populated with the item information that can then be updated and saved. 
+
++ Delete(*Delete*)
+From the item detail page, the admin has a delete button that will trigger a confirmation modal. Once the admin confirms deletion, the item will be removed from the database
+
+---
+
+### **Bag**
+
+A user can open the bag page at any point and see what items thay have in there. 
+
+From here a user can update product quantities, remove items from the bag or access the checkout page. 
+
+---
+
+### **Checkout**
+
+The checkout page allows the user to:
++ use their default delivery address(if they have an account, are logged in and have saved those details)
++ input new delivery information if needed or are checking out as a guest
++ update their profile with the inputted edlivery information(if they have an account and are logged in)
++ Pay via Stripe for secure payments
++ A loading screen will appear when a payment is being processed to stop the user clicking away
++ If the payment form doesn't submit properly or the user closes the browser during the wait animation, Stripe will still create the order for the user. 
++ An email wil be sent to the user with their order confirmation
+
+---
+
+### **Contact page**
+
+The user can fill out a contact form and send a message to the site admin. This will send an email directly to the admin's email rather than to the admin console. 
+
+---
+
+### **FAQ's page**
+
+The user can browse through the FAQ's page and have generic questions answered rather than have to contact the site admin.
+
+---
+
+### **Emails**
+
+The site will send real emails when needed:
+
++ New customer registration
++ Order confirmation
++ User submits a query through the contact page
++ A user needs to update their password
+---
+
+### **Toasts**
+
+There are four types of toasts that are displayed to the user when specific actions happen. This keeps the user informed about what is happening when it happens. The toasts are:
+
++ Success
+   + When a user sucessfuly signs in/signs out
+   + When a user adds a product to a bag
+   + When an admin adds/edits items
++ Info
+   + When a user is viewing previous order details
++ Warning
+   + Stripe key not found 
++ Error
+   + When a user is trying to access a page they are not autorized to
+   + When an admin's CRUD action fails
+
+*These are just a few examples*
+
+---
+
+## Possible Future Features
++ A rating system that allows users to rate products after they have purchased. 
++ This could lead to sorting by top-rated products.
++ Ability to 'save' products to a users own account to refer back to.
++ Users ability to delete their account.
++ Admin controlled 'featured' products and events. 
+
+## Defensive Design Features
+
+Below are the steps that I have taken with regards to defensive design:
+
++ Form validation:
+   + If incorrect data is added to a form, the form won't submit and a warning will appear to the user
+   + Image files are vefified by Django's ImageField
+   + Video files are verified by the FileExtensionValidator in the models.py file
+
++ Adding products to bag:
+   + A user cannot add more than 99 quantity of a product
+   + A user cannot add 0 quantity of a product
+   + If an item is in a bag an the user changes the quantity to 0, the item will be removed
+
++ Default images:
+   + The images have been set to required but if for any reason this fails, there is a default image that will take it's place
+   + A default image has been created for the event that a video is not uploaded or a URL link added
+
++ Custom error pages:
+   + A 404 error page will show if the user treis to visit a page that doesn't exist. There are buttons on the page for the user to redirect themselves
+   + A 500 error page will show if an internal server error occurs on the site. There are buttons on the page for the user to redirect themselves
+
++ Authenticated vs unauthenticated user pages:
+   + The @login_required decorator has been used to make sure that secure pages stay off limites to unauthenticated users
+   + If an authenticted user tries to access the 'signin_or_guest' page via URL, they will be redirected to the checkout page(if they have items in their bag)
+   + If a user with no bag items tries to access the checkout page via URL, they will be redirected to the products page and receive a notification
+   + If an unauthenticted user tries to access a restricted page they will be redirected
+   + If an authenticted user without admin privilege tried to go to an admin-only page via a URL, they will be redirected to the home page and receive a notification
+
+---
+---
+
+
+
+---
+---
+
 # Testing
 Due to the size of the testing section, I have created a separate document for it. You can find it [here](). 
 
