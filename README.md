@@ -120,11 +120,64 @@ However, I chose photos of wine that are very popular in Croatia and thus tried 
 
 Due to too large file all images are processed in [TinyPNG] (https://tinypng.com/).
 
+
+
 ## Wireframes and Initial Design
 
 As the project progressed, some element placement was tweaked and updated. However, I think that the layout changes were not so drastic that they warrented new wireframes to be designed and I also had limited time for project development .You can find it [here](https://github.com/petracili/Milston-project4/tree/main/wireframes). 
 
 ---
+---
+
+---
+---
+
+# Features
+## Current Features
+### **Navigation menu displayed across all pages**
+
+The navigation menu will help the user move easily across all pages.
+
+The navigation buttons update depending on whether a user is logged in or not, and whether that user is the admin:
+
+| Nav Link              |Not logged in  |Logged in as user|Logged in as admin
+|:-------------         |:------------- |:----------------|:------------- |
+|Logo(back to home)     |&#9989;        |&#9989;          |&#9989;
+|Product Management     |&#10060;       |&#10060;         |&#9989;
+|Wine Management      |&#10060;       |&#10060;         |&#9989;
+|My Profile             |&#10060;       |&#9989;          |&#9989;
+|Sign Out               |&#10060;       |&#9989;          |&#9989;
+|Register               |&#9989;        |&#10060;         |&#10060;
+|Sign In                |&#9989;        |&#10060;         |&#10060;
+|All Products           |&#9989;        |&#9989;          |&#9989;
+|Prints                 |&#9989;        |&#9989;          |&#9989;
+
+### **User registration not required**
+
+It was important that the user was given the option to purchase from the store without having to register for an account. It's a personal pet peeve of mine to have to make accounts on online stores when I'm not guaranteed to go back again.
+
+### **User profile creation**
+
+A user has an option to create an account if they want to. 
+Registration process:
+
++ Username
+   + A user can choose a username as long as it hasn't already been taken
+   + The user will receive an error notification immediately if their username has already been taken
+
++ Email address
+   + A user needs to sign up using an email address
+   + The email has to be inputted twice to avoid typo issues
+   + This triggers an automatic email to be sent to the user to confirm the email address as correct and set up the account. 
+
++ Password
+   + The password has to be inputted twice to avoid typo issues
+
+With a user profile: 
++ order history is saved & displayed in their profile.
++ Save default delivery information to their profile from the checkout page.
++ Update default delivery information to their profile from their profile page.
+
 ---
 
 # Testing
@@ -247,3 +300,40 @@ Heroku needs to know which technologies are being used and any requirements, so 
 + Keep clicking 'Next' until you reach the 'Create user' button and click that. 
 + Download the CSV file which contains the AWS_SECRET_ACCESS_KEY and your AWS_ACCESS_KEY_ID needed in the Heroku variables.
 + **This will be the only time that you will be able to access and download this file. If you don't download it, you'll have to start the AWS process again**
+
+## Set up Emails
+
+**I used Gmail for the email account. Others can be used but will need a few changes**
+
++ Go to settings.py and change the DEFAULT_FROM_EMAIL to your chosen email address.
++ If you want to set up a new Gmail account for the site, this is the time to do so.
++ Go to the Gmail account and open the 'Settings' tab.
++ Go to 'Accounts and Imports' > 'Other Google Account Settings'.
++ Go to the 'Security' tab and open 'Signing in to Google'.
+
++ Click on '2-step Verification', click 'Get Started' and turn on 2-step verification following their instructions.
++ Go to 'Security' > 'Signing in to Google' > 'App Passwords'.
++ (You may have to input your account password again) Set 'App' to 'Mail', 'Device' to Other, and name it Django.
++ The passcode that appears will be used in your Heroku variables.
+
+## Deploy
++ In Heroku, once all the variables are in place, locate 'Manual Deploy' > choose the master branch and click 'Deploy Branch'.
++ Once the app is built (it may take a few minutes), click 'Open App' from the top of the page.
++ Go back to the 'Deploy' tab and you can now click 'Enable Automatic Deployment'. Changes automatically deploy when you make a git push.
+
+## Forking the Repository
++ Log in to GitHub and locate the GitHub Repository.
++ At the top of the Repository above the "Settings" Button on the menu, locate the "Fork" Button.
++ You will have a copy of the original repository in your GitHub account.
++ You will now be able to make changes to the new version and keep the original safe. 
+
+## Making a Local Clone
++ Log into GitHub.
++ Locate the repository.
++ Click the 'Code' dropdown above the file list.
++ Copy the URL for the repository.
++ Open Git Bash on your device.
++ Change the current working directory to the location where you want the cloned directory.
++ Type ```git clone``` in the CLI and then paste the URL you copied earlier. This is what it should look like:
+  + ```$ git clone ```
++ Press Enter to create your local clone.
