@@ -23,7 +23,6 @@ You can find the live site [here](https://myston-project-4.herokuapp.com/)
   + [Current Features](#current-features)
   + [Possible Future Features](#possible-future-features)
   + [Defensive Design Features](#defensive-design-features)
-+ [Database](#database)
 + [Technologies Used](#technologies-used)
   + [Languages](#languages)
   + [Frameworks and Libraries](#frameworks-and-libraries)
@@ -322,6 +321,78 @@ Below are the steps that I have taken with regards to defensive design:
 
 ---
 ---
+
+## Products
+
++ This model stores the product details that the user can buy from the site
++ This model pulls information from the categories model to catagorize the type of product being sold
+
+## Categories
+
++ This model stores the product category details
+
+## OrderLineItem
+
++ This model stores a product that has been added to the users bag
++ This model pulls information from the products model to add them to the users order
++ This model sends information to the Order model to update the order information
+
+## Order
+
++ This model stores the full order information
++ This model pulls information from the OrderLineItem model to add products to the order
++ This model pulls information from the UserProfile model to attach the order to their profile
+
+## UserProfile
+
++ This model stores the users delivery and order information
++ This model pulls information from the User model to create the profile
++ This model sends information to the Order model to attach the order to their profile
+
+## User
+
++ This model stores the user registration information
++ This model sends information to the UserProfile model to create the profile
+
+## Levels
+
++ This model stores the class difficulty level details
++ This model sends information to the Classes model to catagorize the difficuly level
+
+---
+---
+
+# Technologies Used
+## Languages
++ [HTML5](https://en.wikipedia.org/wiki/HTML5)
++ [CSS3](https://en.wikipedia.org/wiki/CSS)
++ [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
++ [Python3](https://www.python.org/)
+
+## Frameworks and Libraries
++ [Django](https://www.djangoproject.com/)
++ [Pip3](https://pip.pypa.io/en/stable/)
++ [jQuery](https://jquery.com/)
++ [FontAwesome](https://fontawesome.com/)
++ [Google Fonts](https://fonts.google.com/)
++ [Bootstrap](https://getbootstrap.com/)
+
+## All Others
++ [Heroku](https://www.heroku.com/) used to deploy live site.
++ [Stripe](https://stripe.com/en-ie) used for the payments system.
++ [AWS](https://aws.amazon.com/) used for file storage.
++ [GitHub](https://github.com/) used to host repository.
++ [GitPod](https://www.gitpod.io/) used to develop project and organise version control.
++ [TinyPNG](https://tinypng.com/) used to cut and re-size site images. 
++ [Balsamiq](https://balsamiq.com/) used to create wireframes.
++ [RandomKeygen](https://randomkeygen.com/) used to create a strong password for required  `<SECRET_KEY>`.
++ [Transfonter](https://transfonter.org/) used to convert font from .tff to .woff and .woff2.
++ [Lighthouse](https://developers.google.com/web/tools/lighthouse) for performance review.
++ [Responsinator](https://www.responsinator.com/) used to check site was responsive on different screen sizes.
++ [Am I Responsive](http://ami.responsivedesign.is/) used to generate README intro image.
++ [favicon.io](https://favicon.io/) used to create a site favicon.
++ [ClipConverter](https://www.clipconverter.cc/2/) used to download and convert YouTube videos.
++ [Autoprefixer](https://autoprefixer.github.io/) used to make CSS cross-browser compatible..
 
 
 
