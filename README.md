@@ -4,6 +4,9 @@ Code Institute Diploma in Full-Stack Software Development Project 4
 
 ##### <u>Project name:</u>The Croatian Wine
 
+<img src="test/firstpage.PNG" />
+
+
 You can find the live site [here](https://myston-project-4.herokuapp.com/)
 
 ---
@@ -394,7 +397,7 @@ Below are the steps that I have taken with regards to defensive design:
 ---
 
 # Testing
-Due to the size of the testing section, I have created a separate document for it. You can find it [here](). 
+Due to the size of the testing section, I have created a separate document for it. You can find it [here](https://github.com/petracili/Milston-project4/blob/main/testing.md). 
 
 ---
 ---
